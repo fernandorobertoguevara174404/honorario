@@ -3,7 +3,7 @@ from app.forms import Calculo
 from flask import render_template
 
 @app.route('/', methods=['GET', 'POST'])
-def login():
+def calculo():
     form = Calculo()
     if form.validate_on_submit():
         hon = form.valor.data
@@ -26,3 +26,4 @@ def login():
         }
         return render_template('login.html', title='Resultado',valores=valores)
     return render_template('index.html', title='Calculadora', form=form)
+
