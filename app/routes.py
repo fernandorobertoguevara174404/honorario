@@ -24,5 +24,5 @@ def login():
             'neto':neto,
             'neto1':neto1
         }
-        return render_template('login.html', title='Resultado', form=form,valores=valores)
+        return render_template('login.html', title='Resultado',valores=valores)
     return render_template('index.html', title='Calculadora', form=form)
