@@ -1,31 +1,28 @@
-from flask import render_template
 from app import app
-from app.forms import LoginForm
-from flask import render_template, flash, redirect
-from flask import render_template, flash, redirect, url_for
+from app.forms import Calculo
+from flask import render_template
 
-@app.route('/')
-@app.route('/index')
-def index():
-    user = {'username': 'Beto'}
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
-    return render_template('index.html', title='Home', user=user, posts=posts)
-
-
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def login():
-    form = LoginForm()
+    form = Calculo()
     if form.validate_on_submit():
-        flash('Login requested for user {}, remember_me={}'.format(
-            form.username.data, form.remember_me.data))
-        return redirect(url_for('index'))
-    return render_template('login.html', title='Sign In', form=form)
+        hon = form.valor.data
+        iva_valor=0.16
+        riva = 0.106666
+        risr = 0.10
+        sub = hon + (hon * iva_valor)
+        sub1 = "%.2f" % sub
+        neto = sub - (hon * riva) - (hon * risr)
+        neto1 = "%.2f" % neto
+        valores = {
+            'hon':hon,
+            'iva_valor':iva_valor,
+            'riva':riva,
+            'risr':risr,
+            'sub':sub,
+            'sub1':sub1,
+            'neto':neto,
+            'neto1':neto1
+        }
+        return render_template('login.html', title='Resultado', form=form,valores=valores)
+    return render_template('index.html', title='Calculadora', form=form)

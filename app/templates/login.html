@@ -1,24 +1,18 @@
 {% extends "base.html" %}
-
 {% block content %}
-    <h1>Sign In</h1>
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
-            {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
-            {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit() }}</p>
-    </form>
+    <div>
+        Para regresar a la calculadora, haga Click
+        <a href="/"> aquí.</a>
+    </div>
+    <br>
+    <h1>Cálculos de honorarios</h1>
+    <br>
+    <div>Honorarios: ${{ valores.hon }}</div> <br>
+    <div>IVA: {{ valores.iva_valor }}</div><br>
+    <div>R_IVA: {{ valores.riva }}</div><br>
+    <div>R_ISR: {{ valores.risr }}</div><br>
+    <div>Subtotal: ${{ valores.sub1 }}</div><br>
+    <div>Neto: ${{ valores.neto1 }}</div><br>
+    <br>
+
 {% endblock %}
